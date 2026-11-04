@@ -1,29 +1,131 @@
-import { Summary } from './components/Summary.tsx'
-import { WorkoutCard } from './components/WorkoutCard.tsx'
-import { loadWorkouts } from './data/loadWorkouts.ts'
+import { useEffect, useState } from 'react'
+import { AppNav } from './components/AppNav.tsx'
+import { GymMode } from './components/GymMode.tsx'
+import { LogView } from './components/LogView.tsx'
+import { PlanOverview } from './components/PlanOverview.tsx'
+import { findSession, loadPlan } from './data/loadPlan.ts'
+import type { PlanExercise } from './data/planTypes.ts'
+import { parseHash, routes, useHashRoute } from './lib/hashRoute.ts'
+import {
+  loadProgress,
+  padChecks,
+  saveProgress,
+  suggestSessionId,
+  type PlanProgress,
+} from './lib/planProgress.ts'
 
-const workouts = loadWorkouts()
+const plan = loadPlan()
 
-const App = () => (
-  <div className="page">
-    <header className="hero">
-      <p className="eyebrow">Training log</p>
-      <h1>Workouts</h1>
-      <p className="lede">
-        A simple record of strength, running, and cycling sessions. Add a new
-        JSON file under <code>workouts/</code> and it shows up here after the
-        next build.
-      </p>
-    </header>
+const initialProgress = (): PlanProgress => {
+  const stored = loadProgress()
+  const initialRoute = parseHash(window.location.hash)
+  if (initialRoute.name === 'session' && initialRoute.sessionId !== 'current') {
+    return { ...stored, currentSessionId: initialRoute.sessionId }
+  }
 
-    <Summary workouts={workouts} />
+  return stored
+}
 
-    <section className="list" aria-label="Workout list">
-      {workouts.map((workout) => (
-        <WorkoutCard key={workout.id} workout={workout} />
-      ))}
-    </section>
-  </div>
-)
+const App = () => {
+  const route = useHashRoute()
+  const [progress, setProgress] = useState<PlanProgress>(initialProgress)
+  const suggestedSessionId = suggestSessionId(plan.sessions, progress)
+
+  const sessionId =
+    route.name === 'session'
+      ? route.sessionId === 'current'
+        ? suggestedSessionId
+        : route.sessionId
+      : null
+  const session = sessionId ? findSession(plan, sessionId) : undefined
+
+  if (session && progress.currentSessionId !== session.id) {
+    setProgress({ ...progress, currentSessionId: session.id })
+  }
+
+  useEffect(() => {
+    saveProgress(progress)
+  }, [progress])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [route])
+
+  useEffect(() => {
+    if (route.name === 'session' && route.sessionId === 'current' && suggestedSessionId) {
+      window.location.replace(
+        `${window.location.pathname}${window.location.search}${routes.session(suggestedSessionId)}`,
+      )
+    }
+  }, [route, suggestedSessionId])
+
+  useEffect(() => {
+    if (route.name === 'log') {
+      document.title = 'Workouts'
+      return
+    }
+
+    if (session) {
+      document.title = `${session.title} · Week ${session.week}`
+      return
+    }
+
+    document.title = 'Plan'
+  }, [route.name, session])
+
+  const onToggleSet = (
+    targetSessionId: string,
+    exercise: PlanExercise,
+    setIndex: number,
+  ) => {
+    setProgress((current) => {
+      const nextSets = padChecks(
+        current.checks[targetSessionId]?.[exercise.id],
+        exercise.sets,
+      ).map((done, index) => (index === setIndex ? !done : done))
+
+      return {
+        ...current,
+        currentSessionId: targetSessionId,
+        checks: {
+          ...current.checks,
+          [targetSessionId]: {
+            ...current.checks[targetSessionId],
+            [exercise.id]: nextSets,
+          },
+        },
+      }
+    })
+  }
+
+  if (route.name === 'session' && session) {
+    return (
+      <GymMode
+        plan={plan}
+        session={session}
+        progress={progress}
+        onOpenSession={(id) => {
+          setProgress((current) => ({ ...current, currentSessionId: id }))
+        }}
+        onToggleSet={onToggleSet}
+      />
+    )
+  }
+
+  return (
+    <>
+      <AppNav route={route} />
+      {route.name === 'log' ? (
+        <LogView />
+      ) : (
+        <PlanOverview
+          plan={plan}
+          progress={progress}
+          suggestedSessionId={suggestedSessionId}
+        />
+      )}
+    </>
+  )
+}
 
 export default App
