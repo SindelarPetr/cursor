@@ -288,21 +288,81 @@ h1 {
   font-size: 1.45rem;
 }
 
-.week-row {
-  margin-bottom: 28px;
+.plan-block {
+  margin: 0 0 36px;
+  padding: 22px 22px 6px;
+  border: 1px solid var(--line);
+  border-top: 6px solid var(--block-color);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--block-color) 5%, var(--bg));
 }
 
-.week-row-head {
+.plan-block.block-upper {
+  --block-color: var(--upper);
+}
+
+.plan-block.block-lower {
+  --block-color: var(--lower);
+}
+
+.plan-block-head {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
-.week-row-head h2 {
+.plan-block-head .eyebrow {
+  color: var(--block-color);
+}
+
+.plan-block-head h2 {
   margin: 0;
-  font-size: 1.45rem;
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+  color: var(--block-color);
+}
+
+.plan-block-head p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.plan-block-count {
+  display: grid;
+  justify-items: end;
+  margin: 0;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.plan-block-count strong {
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.7rem;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.week-row {
+  display: grid;
+  grid-template-columns: minmax(200px, 300px) 1fr;
+  gap: 12px 20px;
+  margin-bottom: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.week-row-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.week-row-head h3 {
+  margin: 0;
+  font-family: Fraunces, 'Iowan Old Style', Georgia, serif;
+  font-weight: 560;
+  font-size: 1.35rem;
 }
 
 .week-title {
@@ -312,13 +372,17 @@ h1 {
 
 .week-row-head p,
 .week-count {
-  margin: 6px 0 0;
+  margin: 0;
   color: var(--muted);
+}
+
+.week-count {
+  font-size: 0.9rem;
 }
 
 .session-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -606,8 +670,8 @@ h1 {
 }
 
 @media (max-width: 900px) {
-  .session-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .week-row {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -617,8 +681,18 @@ h1 {
     grid-template-columns: 1fr;
   }
 
-  .week-row-head {
+  .plan-block {
+    margin-left: -8px;
+    margin-right: -8px;
+    padding: 18px 14px 4px;
+  }
+
+  .plan-block-head {
     flex-direction: column;
+  }
+
+  .plan-block-count {
+    justify-items: start;
   }
 
   .gym-rx {

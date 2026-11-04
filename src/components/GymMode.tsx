@@ -145,7 +145,8 @@ export const GymMode = ({
           Plan
         </a>
         <p>
-          Week {session.week} · {session.weekTitle}
+          Week {session.week} · {session.block === 'upper' ? 'Upper' : 'Lower'} block{' '}
+          {session.blockWeek}/3
         </p>
         <a className="gym-back" href={routes.log}>
           Log
@@ -158,7 +159,7 @@ export const GymMode = ({
         </p>
         <h1>{session.title}</h1>
         <p className="gym-sub">
-          {session.suggestedDay} · ~{session.durationMinutes} min · {counts.done}/
+          {session.weekTitle} · ~{session.durationMinutes} min · {counts.done}/
           {counts.total} sets
         </p>
         <p className="gym-session-note">{session.notes}</p>
@@ -191,7 +192,7 @@ export const GymMode = ({
       <footer className="gym-nav">
         {previous ? (
           <a href={routes.session(previous.id)} onClick={() => onOpenSession(previous.id)}>
-            ← {previous.title}
+            ← W{previous.week} {previous.title}
           </a>
         ) : (
           <span />
@@ -201,7 +202,7 @@ export const GymMode = ({
         </span>
         {next ? (
           <a href={routes.session(next.id)} onClick={() => onOpenSession(next.id)}>
-            {next.title} →
+            W{next.week} {next.title} →
           </a>
         ) : (
           <span />
