@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-22",
+  "type": "run",
+  "durationMinutes": 44,
+  "title": "Easy 8k (sample)",
+  "notes": "Sample workout. Conversational pace, slightly chilly morning.",
+  "exercises": [
+    { "name": "Easy jog", "distanceKm": 8.1 }
+  ]
+}
