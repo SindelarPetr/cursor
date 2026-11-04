@@ -1,0 +1,54 @@
+{
+  "id": "wrist-rehab",
+  "kind": "wrist",
+  "title": "Wrist rehab",
+  "durationMinutes": 20,
+  "notes": "About 20 minutes, every session. Light dumbbell or hammer only. Pain-free range. Stop any drill that pinches, clicks sharply, or swells.",
+  "exercises": [
+    {
+      "id": "flex-ext",
+      "name": "Wrist flexion / extension",
+      "sets": 2,
+      "reps": "12",
+      "restSeconds": 30,
+      "load": "1–3 kg DB",
+      "notes": "Forearm on a bench, hand hanging. Slow nods. No heavy squeeze at the end."
+    },
+    {
+      "id": "pro-sup",
+      "name": "Hammer pronation / supination",
+      "sets": 2,
+      "reps": "10 / way",
+      "restSeconds": 30,
+      "load": "Light hammer or DB held at one end",
+      "notes": "Elbow tucked to the ribs. Rotate palm up and down like a slow doorknob."
+    },
+    {
+      "id": "rad-uln",
+      "name": "Radial / ulnar deviation",
+      "sets": 2,
+      "reps": "10 / way",
+      "restSeconds": 30,
+      "load": "Very light",
+      "notes": "Thumb-up and pinky-down waves. A tiny range is enough."
+    },
+    {
+      "id": "grip",
+      "name": "Soft grip squeezes",
+      "sets": 2,
+      "reps": "12",
+      "restSeconds": 30,
+      "load": "Towel or soft ball",
+      "notes": "Squeeze to about half effort, then fully open the hand."
+    },
+    {
+      "id": "circles",
+      "name": "Gentle circles and stretches",
+      "sets": 2,
+      "reps": "8 circles / way",
+      "restSeconds": 20,
+      "load": "Bodyweight",
+      "notes": "Slow circles, then easy prayer and reverse-prayer stretches. Do not force end range."
+    }
+  ]
+}

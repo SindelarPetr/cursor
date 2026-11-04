@@ -1,0 +1,263 @@
+{
+  "week": 4,
+  "title": "Load",
+  "goal": "Nudge main-lift load if week 3 was clean. Keep wrist work light.",
+  "wrist": {
+    "sets": 3,
+    "load": "Light. Do not chase weight here.",
+    "notes": "If anything feels sharp, drop back to week 2 volume.",
+    "reps": {
+      "flex-ext": "12",
+      "pro-sup": "10 / way",
+      "rad-uln": "10 / way",
+      "grip": "12",
+      "circles": "8 circles / way"
+    }
+  },
+  "sessions": [
+    {
+      "id": "w4-upper-a",
+      "focus": "upper",
+      "variant": "A",
+      "title": "Upper A",
+      "suggestedDay": "Monday",
+      "durationMinutes": 60,
+      "notes": "Small load bump only if week 3 eights were boring. Wrist stays light.",
+      "blocks": [
+        {
+          "id": "main",
+          "kind": "main",
+          "title": "Main lifts",
+          "exercises": [
+            {
+              "id": "ng-db-bench",
+              "name": "Neutral-grip DB bench press",
+              "sets": 4,
+              "reps": "6–8",
+              "restSeconds": 150,
+              "load": "Add ~2 kg / DB if week 3 eights were clean.",
+              "notes": "Palms face each other. No barbell bench. Set the DBs on your thighs to get into position."
+            },
+            {
+              "id": "chest-supported-row",
+              "name": "Chest-supported row",
+              "sets": 4,
+              "reps": "8",
+              "restSeconds": 120,
+              "load": "Small load bump. Straps on.",
+              "notes": "Chest on the pad. Neutral handles. Use straps if the grip or wrist complains."
+            },
+            {
+              "id": "landmine-press",
+              "name": "Landmine press",
+              "sets": 4,
+              "reps": "8",
+              "restSeconds": 90,
+              "load": "Add a small plate if lockouts were easy.",
+              "notes": "One end in a landmine or corner. Neutral-ish path, no heavy barbell overhead."
+            }
+          ]
+        },
+        {
+          "id": "core",
+          "kind": "core",
+          "title": "Core",
+          "exercises": [
+            {
+              "id": "dead-bug",
+              "name": "Dead bug",
+              "sets": 3,
+              "reps": "10 / side",
+              "restSeconds": 45,
+              "load": "Bodyweight",
+              "notes": "Low back stays on the floor. Opposite arm and leg, slow."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w4-lower-a",
+      "focus": "lower",
+      "variant": "A",
+      "title": "Lower A",
+      "suggestedDay": "Tuesday",
+      "durationMinutes": 60,
+      "notes": "Add a little to the squat and RDL. If the bar bothers the wrist, goblet it.",
+      "blocks": [
+        {
+          "id": "main",
+          "kind": "main",
+          "title": "Main lifts",
+          "exercises": [
+            {
+              "id": "squat",
+              "name": "Back squat or goblet squat",
+              "sets": 4,
+              "reps": "5",
+              "restSeconds": 180,
+              "load": "Add 2.5–5 kg if week 3 sixes were clean.",
+              "notes": "High-bar or goblet if the bar bothers the wrist. Cup a DB or use a kettlebell so the wrist stays stacked."
+            },
+            {
+              "id": "rdl",
+              "name": "Romanian deadlift",
+              "sets": 4,
+              "reps": "8",
+              "restSeconds": 150,
+              "load": "Straps on. Small load bump.",
+              "notes": "Straps on. Soft knees, long hamstrings, bar close. Neutral grip under the straps."
+            },
+            {
+              "id": "bulgarian",
+              "name": "Bulgarian split squat",
+              "sets": 3,
+              "reps": "8 / leg",
+              "restSeconds": 90,
+              "load": "Heavier DBs only if balance is easy.",
+              "notes": "DBs at your sides, wrists straight. Short the stance if the front knee is noisy."
+            }
+          ]
+        },
+        {
+          "id": "core",
+          "kind": "core",
+          "title": "Core",
+          "exercises": [
+            {
+              "id": "side-plank",
+              "name": "Side plank",
+              "sets": 3,
+              "reps": "35 s / side",
+              "restSeconds": 45,
+              "load": "Bodyweight",
+              "notes": "Elbow under shoulder. Hips high. Drop to a knee if the wrist would take the load on a straight-arm plank."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w4-upper-b",
+      "focus": "upper",
+      "variant": "B",
+      "title": "Upper B",
+      "suggestedDay": "Thursday",
+      "durationMinutes": 60,
+      "notes": "Nudge the DBs. Neutral grips and straps still non-negotiable.",
+      "blocks": [
+        {
+          "id": "main",
+          "kind": "main",
+          "title": "Main lifts",
+          "exercises": [
+            {
+              "id": "ng-db-incline",
+              "name": "Neutral-grip DB incline press",
+              "sets": 4,
+              "reps": "6–8",
+              "restSeconds": 150,
+              "load": "Add ~2 kg / DB if week 3 eights were clean.",
+              "notes": "Low incline. Palms in. Same wrist-friendly press as Upper A, different angle."
+            },
+            {
+              "id": "one-arm-row",
+              "name": "One-arm DB row",
+              "sets": 4,
+              "reps": "8",
+              "restSeconds": 120,
+              "load": "Small load bump. Straps on.",
+              "notes": "Strap on the working hand. Other hand on a bench. Neutral wrist, pull to the hip."
+            },
+            {
+              "id": "seated-db-press",
+              "name": "Seated neutral-grip DB press",
+              "sets": 4,
+              "reps": "8",
+              "restSeconds": 90,
+              "load": "Add a small plate if lockouts were easy.",
+              "notes": "Palms face each other. No barbell push press. Stop at eye level if the wrist nags."
+            }
+          ]
+        },
+        {
+          "id": "core",
+          "kind": "core",
+          "title": "Core",
+          "exercises": [
+            {
+              "id": "bird-dog",
+              "name": "Bird dog",
+              "sets": 3,
+              "reps": "10 / side",
+              "restSeconds": 45,
+              "load": "Bodyweight",
+              "notes": "Opposite arm and leg. Square hips. Pause a beat at the long position."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w4-lower-b",
+      "focus": "lower",
+      "variant": "B",
+      "title": "Lower B",
+      "suggestedDay": "Friday",
+      "durationMinutes": 60,
+      "notes": "A bit more load on goblet and hinge if balance is easy.",
+      "blocks": [
+        {
+          "id": "main",
+          "kind": "main",
+          "title": "Main lifts",
+          "exercises": [
+            {
+              "id": "goblet-squat",
+              "name": "Goblet squat",
+              "sets": 4,
+              "reps": "5",
+              "restSeconds": 150,
+              "load": "Add 2.5–5 kg if week 3 sixes were clean.",
+              "notes": "Cup the top of the DB or use a kettlebell. Wrist stacked, elbows down. No front-rack barbell."
+            },
+            {
+              "id": "sl-rdl",
+              "name": "Single-leg Romanian deadlift",
+              "sets": 3,
+              "reps": "8 / leg",
+              "restSeconds": 90,
+              "load": "Straps on. Small load bump.",
+              "notes": "Straps on. Free hand for a light balance touch. Soft knee, hips square."
+            },
+            {
+              "id": "reverse-lunge",
+              "name": "Reverse lunge",
+              "sets": 3,
+              "reps": "8 / leg",
+              "restSeconds": 90,
+              "load": "Heavier DBs only if balance is easy.",
+              "notes": "DBs at your sides. Step back, front shin vertical. Neutral wrists."
+            }
+          ]
+        },
+        {
+          "id": "core",
+          "kind": "core",
+          "title": "Core",
+          "exercises": [
+            {
+              "id": "suitcase-hold",
+              "name": "Suitcase hold",
+              "sets": 3,
+              "reps": "35 s / side",
+              "restSeconds": 45,
+              "load": "A bit heavier if the torso stays tall.",
+              "notes": "DB in one hand, stand tall. Do not lean away. Switch sides every set."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

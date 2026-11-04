@@ -39,3 +39,20 @@ export const typeLabel = (type: WorkoutType): string => {
 
   return type.charAt(0).toUpperCase() + type.slice(1)
 }
+
+export const formatRest = (seconds: number): string => {
+  const minutes = Math.floor(seconds / 60)
+  const remaining = seconds % 60
+  if (minutes === 0) {
+    return `${remaining}s`
+  }
+
+  return `${minutes}:${remaining.toString().padStart(2, '0')}`
+}
+
+export const formatClock = (seconds: number): string => {
+  const safe = Math.max(0, seconds)
+  const minutes = Math.floor(safe / 60)
+  const remaining = safe % 60
+  return `${minutes}:${remaining.toString().padStart(2, '0')}`
+}
