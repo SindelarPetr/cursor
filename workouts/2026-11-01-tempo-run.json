@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-01",
+  "type": "run",
+  "durationMinutes": 41,
+  "title": "Tempo run (sample)",
+  "notes": "Sample workout. 10 min easy, 20 min tempo, 10 min cool-down.",
+  "exercises": [
+    { "name": "Warm-up", "distanceKm": 1.8 },
+    { "name": "Tempo", "distanceKm": 4.6, "notes": "Around 4:40 / km" },
+    { "name": "Cool-down", "distanceKm": 1.6 }
+  ]
+}

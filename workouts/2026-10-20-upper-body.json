@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-20",
+  "type": "strength",
+  "durationMinutes": 58,
+  "title": "Upper body (sample)",
+  "notes": "Sample workout. Felt strong on bench; left the last set of rows in the tank.",
+  "exercises": [
+    { "name": "Bench press", "sets": 4, "reps": 6, "weightKg": 80 },
+    { "name": "Barbell row", "sets": 4, "reps": 8, "weightKg": 70 },
+    { "name": "Overhead press", "sets": 3, "reps": 8, "weightKg": 45 },
+    { "name": "Lat pulldown", "sets": 3, "reps": 10, "weightKg": 55 }
+  ]
+}

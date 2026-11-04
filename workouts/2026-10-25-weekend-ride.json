@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-25",
+  "type": "cycling",
+  "durationMinutes": 95,
+  "title": "Weekend endurance ride (sample)",
+  "notes": "Sample workout. Rolling hills, kept it in zone 2 except the last climb.",
+  "exercises": [
+    { "name": "Endurance ride", "distanceKm": 38.4 }
+  ]
+}

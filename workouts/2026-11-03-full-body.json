@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-03",
+  "type": "strength",
+  "durationMinutes": 50,
+  "title": "Full body (sample)",
+  "notes": "Sample workout. Short session before dinner; skipped accessories.",
+  "exercises": [
+    { "name": "Deadlift", "sets": 3, "reps": 5, "weightKg": 120 },
+    { "name": "Bench press", "sets": 3, "reps": 8, "weightKg": 75 },
+    { "name": "Goblet squat", "sets": 3, "reps": 10, "weightKg": 24 }
+  ]
+}

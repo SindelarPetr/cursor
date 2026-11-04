@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-28",
+  "type": "strength",
+  "durationMinutes": 62,
+  "title": "Lower body (sample)",
+  "notes": "Sample workout. Squats felt heavy; cut the last set of RDLs.",
+  "exercises": [
+    { "name": "Back squat", "sets": 4, "reps": 5, "weightKg": 100 },
+    { "name": "Romanian deadlift", "sets": 3, "reps": 8, "weightKg": 90 },
+    { "name": "Walking lunge", "sets": 3, "reps": 10, "weightKg": 20 },
+    { "name": "Calf raise", "sets": 3, "reps": 15, "weightKg": 40 }
+  ]
+}
