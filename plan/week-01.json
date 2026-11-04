@@ -1,18 +1,20 @@
 {
   "week": 1,
-  "title": "Foundation",
-  "goal": "Learn the four sessions. Leave 2–3 reps every set. Wrist work stays very light.",
+  "block": "upper",
+  "blockWeek": 1,
+  "title": "Intro",
+  "goal": "Learn Upper A and Upper B. Every set ends with 2–3 reps left. Find working weights, do not test them.",
   "wrist": {
     "sets": 2,
-    "load": "Very light. Pain-free only.",
-    "notes": "Stay well inside a comfortable range. This is rehab, not a finisher.",
     "reps": {
       "flex-ext": "10",
       "pro-sup": "8 / way",
       "rad-uln": "8 / way",
       "grip": "10",
       "circles": "6 circles / way"
-    }
+    },
+    "load": "Very light. Pain-free only.",
+    "notes": "Start of the plan. Stay well inside a comfortable range — this is rehab, not a finisher."
   },
   "sessions": [
     {
@@ -22,7 +24,7 @@
       "title": "Upper A",
       "suggestedDay": "Monday",
       "durationMinutes": 60,
-      "notes": "Three upper lifts, one core, then the wrist block. Neutral grips only.",
+      "notes": "First upper day. Pick dumbbells you could press for 10 and stop at 6–8. Wrist block after core.",
       "blocks": [
         {
           "id": "main",
@@ -44,8 +46,8 @@
               "sets": 4,
               "reps": "8",
               "restSeconds": 120,
-              "load": "RPE 7. Straps on if grip fades.",
-              "notes": "Chest on the pad. Neutral handles. Use straps if the grip or wrist complains."
+              "load": "RPE 7. Same load all 4 sets.",
+              "notes": "Chest on the pad. Neutral handles. Straps on if the grip or wrist complains."
             },
             {
               "id": "landmine-press",
@@ -67,71 +69,10 @@
               "id": "dead-bug",
               "name": "Dead bug",
               "sets": 3,
-              "reps": "8 / side",
+              "reps": "10 / side",
               "restSeconds": 45,
               "load": "Bodyweight",
               "notes": "Low back stays on the floor. Opposite arm and leg, slow."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "w1-lower-a",
-      "focus": "lower",
-      "variant": "A",
-      "title": "Lower A",
-      "suggestedDay": "Tuesday",
-      "durationMinutes": 60,
-      "notes": "Squat, hinge, single-leg. Straps on the RDL. Goblet the squat if the bar bothers the wrist.",
-      "blocks": [
-        {
-          "id": "main",
-          "kind": "main",
-          "title": "Main lifts",
-          "exercises": [
-            {
-              "id": "squat",
-              "name": "Back squat or goblet squat",
-              "sets": 4,
-              "reps": "5",
-              "restSeconds": 180,
-              "load": "RPE 6–7. Leave 2–3 reps.",
-              "notes": "High-bar or goblet if the bar bothers the wrist. Cup a DB or use a kettlebell so the wrist stays stacked."
-            },
-            {
-              "id": "rdl",
-              "name": "Romanian deadlift",
-              "sets": 4,
-              "reps": "8",
-              "restSeconds": 150,
-              "load": "Straps on. RPE 7.",
-              "notes": "Straps on. Soft knees, long hamstrings, bar close. Neutral grip under the straps."
-            },
-            {
-              "id": "bulgarian",
-              "name": "Bulgarian split squat",
-              "sets": 3,
-              "reps": "8 / leg",
-              "restSeconds": 90,
-              "load": "Light DBs. Even legs.",
-              "notes": "DBs at your sides, wrists straight. Short the stance if the front knee is noisy."
-            }
-          ]
-        },
-        {
-          "id": "core",
-          "kind": "core",
-          "title": "Core",
-          "exercises": [
-            {
-              "id": "side-plank",
-              "name": "Side plank",
-              "sets": 3,
-              "reps": "25 s / side",
-              "restSeconds": 45,
-              "load": "Bodyweight",
-              "notes": "Elbow under shoulder. Hips high. Drop to a knee if the wrist would take the load on a straight-arm plank."
             }
           ]
         }
@@ -144,7 +85,7 @@
       "title": "Upper B",
       "suggestedDay": "Thursday",
       "durationMinutes": 60,
-      "notes": "Incline and single-arm work so this is not a copy of Upper A. Same wrist rules.",
+      "notes": "Incline and single-arm work so this is not a copy of Upper A. Same wrist rules: neutral grips, straps on rows.",
       "blocks": [
         {
           "id": "main",
@@ -157,16 +98,16 @@
               "sets": 4,
               "reps": "6–8",
               "restSeconds": 150,
-              "load": "RPE 6–7. Leave 3 reps.",
+              "load": "RPE 6–7. A bit lighter than flat.",
               "notes": "Low incline. Palms in. Same wrist-friendly press as Upper A, different angle."
             },
             {
               "id": "one-arm-row",
               "name": "One-arm DB row",
               "sets": 4,
-              "reps": "8",
+              "reps": "8 / arm",
               "restSeconds": 120,
-              "load": "RPE 7. Straps on if grip fades.",
+              "load": "RPE 7. Strap on.",
               "notes": "Strap on the working hand. Other hand on a bench. Neutral wrist, pull to the hip."
             },
             {
@@ -191,69 +132,8 @@
               "sets": 3,
               "reps": "8 / side",
               "restSeconds": 45,
-              "load": "Bodyweight",
+              "load": "Bodyweight. 1 s pause at full reach.",
               "notes": "Opposite arm and leg. Square hips. Pause a beat at the long position."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "w1-lower-b",
-      "focus": "lower",
-      "variant": "B",
-      "title": "Lower B",
-      "suggestedDay": "Friday",
-      "durationMinutes": 60,
-      "notes": "Goblet squat and single-leg hinge. Cup the DB so the wrist stays straight.",
-      "blocks": [
-        {
-          "id": "main",
-          "kind": "main",
-          "title": "Main lifts",
-          "exercises": [
-            {
-              "id": "goblet-squat",
-              "name": "Goblet squat",
-              "sets": 4,
-              "reps": "5",
-              "restSeconds": 150,
-              "load": "RPE 6–7. Leave 2–3 reps.",
-              "notes": "Cup the top of the DB or use a kettlebell. Wrist stacked, elbows down. No front-rack barbell."
-            },
-            {
-              "id": "sl-rdl",
-              "name": "Single-leg Romanian deadlift",
-              "sets": 3,
-              "reps": "8 / leg",
-              "restSeconds": 90,
-              "load": "Straps on. Light enough to balance.",
-              "notes": "Straps on. Free hand for a light balance touch. Soft knee, hips square."
-            },
-            {
-              "id": "reverse-lunge",
-              "name": "Reverse lunge",
-              "sets": 3,
-              "reps": "8 / leg",
-              "restSeconds": 90,
-              "load": "Light DBs. Even legs.",
-              "notes": "DBs at your sides. Step back, front shin vertical. Neutral wrists."
-            }
-          ]
-        },
-        {
-          "id": "core",
-          "kind": "core",
-          "title": "Core",
-          "exercises": [
-            {
-              "id": "suitcase-hold",
-              "name": "Suitcase hold",
-              "sets": 3,
-              "reps": "25 s / side",
-              "restSeconds": 45,
-              "load": "Light suitcase DB",
-              "notes": "DB in one hand, stand tall. Do not lean away. Switch sides every set."
             }
           ]
         }

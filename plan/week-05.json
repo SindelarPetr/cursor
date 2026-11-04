@@ -1,89 +1,30 @@
 {
   "week": 5,
-  "title": "Push",
-  "goal": "Top of the rep range. Last working sets can be RPE 8. Wrist block unchanged.",
+  "block": "lower",
+  "blockWeek": 2,
+  "title": "Build",
+  "goal": "Same loads as week 4, more reps. Squat to 6, single-leg work to 10. Wrist dose goes up.",
   "wrist": {
     "sets": 3,
-    "load": "Light and controlled.",
-    "notes": "Keep the rehab easy even if the main lifts feel hard.",
     "reps": {
-      "flex-ext": "12",
-      "pro-sup": "10 / way",
-      "rad-uln": "10 / way",
-      "grip": "12",
+      "flex-ext": "15",
+      "pro-sup": "12 / way",
+      "rad-uln": "12 / way",
+      "grip": "15",
       "circles": "8 circles / way"
-    }
+    },
+    "load": "Light. A tiny bump only if every rep is pain-free.",
+    "notes": "Highest wrist volume of the plan. Same light load, slow and smooth."
   },
   "sessions": [
-    {
-      "id": "w5-upper-a",
-      "focus": "upper",
-      "variant": "A",
-      "title": "Upper A",
-      "suggestedDay": "Monday",
-      "durationMinutes": 60,
-      "notes": "Best week of the block. Last sets can be hard. Wrist block stays easy.",
-      "blocks": [
-        {
-          "id": "main",
-          "kind": "main",
-          "title": "Main lifts",
-          "exercises": [
-            {
-              "id": "ng-db-bench",
-              "name": "Neutral-grip DB bench press",
-              "sets": 4,
-              "reps": "8",
-              "restSeconds": 150,
-              "load": "Top of the range. Last set can be RPE 8.",
-              "notes": "Palms face each other. No barbell bench. Set the DBs on your thighs to get into position."
-            },
-            {
-              "id": "chest-supported-row",
-              "name": "Chest-supported row",
-              "sets": 4,
-              "reps": "10",
-              "restSeconds": 120,
-              "load": "Hard but clean. Straps on.",
-              "notes": "Chest on the pad. Neutral handles. Use straps if the grip or wrist complains."
-            },
-            {
-              "id": "landmine-press",
-              "name": "Landmine press",
-              "sets": 4,
-              "reps": "8",
-              "restSeconds": 90,
-              "load": "Push the last set. Stop before a grind.",
-              "notes": "One end in a landmine or corner. Neutral-ish path, no heavy barbell overhead."
-            }
-          ]
-        },
-        {
-          "id": "core",
-          "kind": "core",
-          "title": "Core",
-          "exercises": [
-            {
-              "id": "dead-bug",
-              "name": "Dead bug",
-              "sets": 3,
-              "reps": "12 / side",
-              "restSeconds": 45,
-              "load": "Bodyweight",
-              "notes": "Low back stays on the floor. Opposite arm and leg, slow."
-            }
-          ]
-        }
-      ]
-    },
     {
       "id": "w5-lower-a",
       "focus": "lower",
       "variant": "A",
       "title": "Lower A",
-      "suggestedDay": "Tuesday",
+      "suggestedDay": "Monday",
       "durationMinutes": 60,
-      "notes": "Strong but pretty. No missed reps, no ugly last squat.",
+      "notes": "Keep week 4 loads and add reps. Crisp depth on every squat.",
       "blocks": [
         {
           "id": "main",
@@ -96,16 +37,16 @@
               "sets": 4,
               "reps": "6",
               "restSeconds": 180,
-              "load": "Best controlled sixes of the block. Not a max.",
-              "notes": "High-bar or goblet if the bar bothers the wrist. Cup a DB or use a kettlebell so the wrist stays stacked."
+              "load": "Week 4 load. All sets to 6.",
+              "notes": "High-bar back squat, or goblet if holding the bar bothers the wrist. Cup the DB so the wrist stays stacked."
             },
             {
               "id": "rdl",
               "name": "Romanian deadlift",
               "sets": 4,
-              "reps": "8",
+              "reps": "10",
               "restSeconds": 150,
-              "load": "Straps on. Strong but not ugly.",
+              "load": "Straps on. Week 4 load, two more reps.",
               "notes": "Straps on. Soft knees, long hamstrings, bar close. Neutral grip under the straps."
             },
             {
@@ -114,8 +55,8 @@
               "sets": 3,
               "reps": "10 / leg",
               "restSeconds": 90,
-              "load": "Working DBs. Same depth both legs.",
-              "notes": "DBs at your sides, wrists straight. Short the stance if the front knee is noisy."
+              "load": "Week 4 DBs, two more reps.",
+              "notes": "DBs at your sides, wrists straight. Shorten the stance if the front knee is noisy."
             }
           ]
         },
@@ -130,69 +71,8 @@
               "sets": 3,
               "reps": "40 s / side",
               "restSeconds": 45,
-              "load": "Bodyweight",
-              "notes": "Elbow under shoulder. Hips high. Drop to a knee if the wrist would take the load on a straight-arm plank."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "w5-upper-b",
-      "focus": "upper",
-      "variant": "B",
-      "title": "Upper B",
-      "suggestedDay": "Thursday",
-      "durationMinutes": 60,
-      "notes": "Push the incline and row. Stop a rep before form breaks.",
-      "blocks": [
-        {
-          "id": "main",
-          "kind": "main",
-          "title": "Main lifts",
-          "exercises": [
-            {
-              "id": "ng-db-incline",
-              "name": "Neutral-grip DB incline press",
-              "sets": 4,
-              "reps": "8",
-              "restSeconds": 150,
-              "load": "Top of the range. Last set can be RPE 8.",
-              "notes": "Low incline. Palms in. Same wrist-friendly press as Upper A, different angle."
-            },
-            {
-              "id": "one-arm-row",
-              "name": "One-arm DB row",
-              "sets": 4,
-              "reps": "10",
-              "restSeconds": 120,
-              "load": "Hard but clean. Straps on.",
-              "notes": "Strap on the working hand. Other hand on a bench. Neutral wrist, pull to the hip."
-            },
-            {
-              "id": "seated-db-press",
-              "name": "Seated neutral-grip DB press",
-              "sets": 4,
-              "reps": "8",
-              "restSeconds": 90,
-              "load": "Push the last set. Stop before a grind.",
-              "notes": "Palms face each other. No barbell push press. Stop at eye level if the wrist nags."
-            }
-          ]
-        },
-        {
-          "id": "core",
-          "kind": "core",
-          "title": "Core",
-          "exercises": [
-            {
-              "id": "bird-dog",
-              "name": "Bird dog",
-              "sets": 3,
-              "reps": "10 / side",
-              "restSeconds": 45,
-              "load": "Bodyweight. 1 s pause.",
-              "notes": "Opposite arm and leg. Square hips. Pause a beat at the long position."
+              "load": "Bodyweight, on the elbow.",
+              "notes": "Elbow under shoulder, never on the hand. Hips high. Drop to a knee to make it easier."
             }
           ]
         }
@@ -203,9 +83,9 @@
       "focus": "lower",
       "variant": "B",
       "title": "Lower B",
-      "suggestedDay": "Friday",
+      "suggestedDay": "Thursday",
       "durationMinutes": 60,
-      "notes": "Best controlled single-leg week. Then treat the wrist like glass.",
+      "notes": "Same loads as week 4, more reps. If one leg fades, stop the set for both.",
       "blocks": [
         {
           "id": "main",
@@ -216,10 +96,10 @@
               "id": "goblet-squat",
               "name": "Goblet squat",
               "sets": 4,
-              "reps": "6",
+              "reps": "8",
               "restSeconds": 150,
-              "load": "Best controlled sixes of the block. Not a max.",
-              "notes": "Cup the top of the DB or use a kettlebell. Wrist stacked, elbows down. No front-rack barbell."
+              "load": "Week 4 load. Pause 1 s at the bottom.",
+              "notes": "Cup the top of the DB or hold a kettlebell by the horns. Wrist stacked, elbows down. No front-rack barbell."
             },
             {
               "id": "sl-rdl",
@@ -227,7 +107,7 @@
               "sets": 3,
               "reps": "10 / leg",
               "restSeconds": 90,
-              "load": "Straps on.",
+              "load": "Straps on. Week 4 load.",
               "notes": "Straps on. Free hand for a light balance touch. Soft knee, hips square."
             },
             {
@@ -236,7 +116,7 @@
               "sets": 3,
               "reps": "10 / leg",
               "restSeconds": 90,
-              "load": "Working DBs. Same depth both legs.",
+              "load": "Week 4 DBs, two more reps.",
               "notes": "DBs at your sides. Step back, front shin vertical. Neutral wrists."
             }
           ]
@@ -252,8 +132,8 @@
               "sets": 3,
               "reps": "40 s / side",
               "restSeconds": 45,
-              "load": "Stay tall. Put it down if the side folds.",
-              "notes": "DB in one hand, stand tall. Do not lean away. Switch sides every set."
+              "load": "Same DB as week 4.",
+              "notes": "DB in one hand, stand tall. Do not lean away. Switch sides each set. Straps are fine."
             }
           ]
         }

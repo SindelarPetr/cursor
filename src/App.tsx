@@ -17,13 +17,17 @@ import {
 const plan = loadPlan()
 
 const initialProgress = (): PlanProgress => {
-  const stored = loadProgress()
+  const stored = loadProgress(plan.sessions)
   const initialRoute = parseHash(window.location.hash)
-  if (initialRoute.name === 'session' && initialRoute.sessionId !== 'current') {
+  if (initialRoute.name === 'session' && findSession(plan, initialRoute.sessionId)) {
     return { ...stored, currentSessionId: initialRoute.sessionId }
   }
 
   return stored
+}
+
+const replaceHash = (hash: string) => {
+  window.location.replace(`${window.location.pathname}${window.location.search}${hash}`)
 }
 
 const App = () => {
@@ -52,10 +56,17 @@ const App = () => {
   }, [route])
 
   useEffect(() => {
-    if (route.name === 'session' && route.sessionId === 'current' && suggestedSessionId) {
-      window.location.replace(
-        `${window.location.pathname}${window.location.search}${routes.session(suggestedSessionId)}`,
-      )
+    if (route.name !== 'session') {
+      return
+    }
+
+    if (route.sessionId === 'current' && suggestedSessionId) {
+      replaceHash(routes.session(suggestedSessionId))
+      return
+    }
+
+    if (!findSession(plan, route.sessionId)) {
+      replaceHash(routes.plan)
     }
   }, [route, suggestedSessionId])
 

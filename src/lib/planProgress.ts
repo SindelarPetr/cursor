@@ -1,13 +1,14 @@
 import type { PlanSession } from '../data/planTypes.ts'
 
-const STORAGE_KEY = 'cursor-plan-progress-v1'
+const STORAGE_KEY = 'cursor-plan-progress-v2'
+const LEGACY_STORAGE_KEYS = ['cursor-plan-progress-v1']
 
 export type PlanProgress = {
   currentSessionId: string | null
   checks: Record<string, Record<string, boolean[]>>
 }
 
-const emptyProgress = (): PlanProgress => ({
+export const emptyProgress = (): PlanProgress => ({
   currentSessionId: null,
   checks: {},
 })
@@ -15,45 +16,69 @@ const emptyProgress = (): PlanProgress => ({
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
-const parseProgress = (value: unknown): PlanProgress => {
+/**
+ * Keeps only progress that still matches the plan: unknown sessions or
+ * exercises are dropped and set arrays are trimmed to the current set count,
+ * so editing `plan/` (or stale data from an older plan) cannot break the UI.
+ */
+export const sanitizeProgress = (value: unknown, sessions: PlanSession[]): PlanProgress => {
   if (!isRecord(value)) {
     return emptyProgress()
   }
 
   const checks: PlanProgress['checks'] = {}
-  if (isRecord(value.checks)) {
-    for (const [sessionId, exercises] of Object.entries(value.checks)) {
-      if (!isRecord(exercises)) {
-        continue
-      }
+  const rawChecks = isRecord(value.checks) ? value.checks : {}
 
-      checks[sessionId] = {}
-      for (const [exerciseId, sets] of Object.entries(exercises)) {
-        if (Array.isArray(sets) && sets.every((flag) => typeof flag === 'boolean')) {
-          checks[sessionId][exerciseId] = sets
+  for (const session of sessions) {
+    const rawSession = rawChecks[session.id]
+    if (!isRecord(rawSession)) {
+      continue
+    }
+
+    for (const block of session.blocks) {
+      for (const exercise of block.exercises) {
+        const sets = rawSession[exercise.id]
+        if (!Array.isArray(sets) || !sets.every((flag) => typeof flag === 'boolean')) {
+          continue
+        }
+
+        const trimmed = sets.slice(0, exercise.sets)
+        if (trimmed.some(Boolean)) {
+          checks[session.id] ??= {}
+          checks[session.id][exercise.id] = trimmed
         }
       }
     }
   }
 
-  return {
-    currentSessionId:
-      typeof value.currentSessionId === 'string' ? value.currentSessionId : null,
-    checks,
-  }
+  const currentSessionId =
+    typeof value.currentSessionId === 'string' &&
+    sessions.some((session) => session.id === value.currentSessionId)
+      ? value.currentSessionId
+      : null
+
+  return { currentSessionId, checks }
 }
 
-export const loadProgress = (): PlanProgress => {
+export const loadProgress = (sessions: PlanSession[]): PlanProgress => {
   try {
+    for (const key of LEGACY_STORAGE_KEYS) {
+      window.localStorage.removeItem(key)
+    }
+
     const raw = window.localStorage.getItem(STORAGE_KEY)
-    return raw ? parseProgress(JSON.parse(raw)) : emptyProgress()
+    return raw ? sanitizeProgress(JSON.parse(raw), sessions) : emptyProgress()
   } catch {
     return emptyProgress()
   }
 }
 
 export const saveProgress = (progress: PlanProgress): void => {
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(progress))
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(progress))
+  } catch {
+    // Private mode or full storage: ticks still work for this page view.
+  }
 }
 
 export const padChecks = (stored: boolean[] | undefined, sets: number): boolean[] => {
@@ -95,16 +120,23 @@ export const completedSetCount = (
   )
 }
 
+/**
+ * The last opened session while it is unfinished; otherwise the first
+ * unfinished session after it (in plan order), then any unfinished session,
+ * and finally the last session once everything is done.
+ */
 export const suggestSessionId = (
   sessions: PlanSession[],
   progress: PlanProgress,
 ): string => {
-  const last = progress.currentSessionId
-  const lastSession = sessions.find((session) => session.id === last)
-  if (lastSession && !isSessionComplete(lastSession, progress)) {
-    return lastSession.id
+  const lastIndex = sessions.findIndex((session) => session.id === progress.currentSessionId)
+  const isOpen = (session: PlanSession) => !isSessionComplete(session, progress)
+
+  if (lastIndex >= 0 && isOpen(sessions[lastIndex])) {
+    return sessions[lastIndex].id
   }
 
-  const firstOpen = sessions.find((session) => !isSessionComplete(session, progress))
-  return firstOpen?.id ?? last ?? sessions[0]?.id ?? ''
+  const afterLast = sessions.slice(lastIndex + 1).find(isOpen)
+  const anyOpen = afterLast ?? sessions.find(isOpen)
+  return anyOpen?.id ?? sessions[sessions.length - 1]?.id ?? ''
 }
