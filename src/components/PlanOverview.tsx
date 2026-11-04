@@ -33,7 +33,7 @@ const SessionCard = ({
 
   return (
     <a
-      className={`session-card focus-${session.focus}${complete ? ' is-complete' : ''}${suggested ? ' is-suggested' : ''}`}
+      className={`session-card card-${session.focus}${complete ? ' is-complete' : ''}${suggested ? ' is-suggested' : ''}`}
       href={routes.session(session.id)}
     >
       <p className="session-card-meta">

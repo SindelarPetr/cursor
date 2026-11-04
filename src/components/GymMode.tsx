@@ -139,7 +139,7 @@ export const GymMode = ({
   }
 
   return (
-    <div className="gym">
+    <div className={rest ? 'gym is-resting' : 'gym'}>
       <header className="gym-top">
         <a className="gym-back" href={routes.plan}>
           Plan
