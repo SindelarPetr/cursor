@@ -108,7 +108,7 @@ check('sets, reps, rest, and a coaching note on every exercise', () => {
   }
 })
 
-check('stale v1 progress (old 24-session ids) is pruned', () => {
+check('stale progress (old 24-session ids, removed lifts, extra sets) is pruned', () => {
   const stale = {
     currentSessionId: 'w2-lower-b',
     checks: {

@@ -2,8 +2,8 @@
 
 A small static React app with two views:
 
-- **Plan** — a 6-week, 4-day strength block (24 sessions) stored as JSON under `plan/`
-- **Log** — finished workouts stored as JSON under `workouts/`
+- **Plan**: a 6-week strength plan with 2 sessions a week (12 sessions), stored as JSON under `plan/`
+- **Log**: finished workouts stored as JSON under `workouts/`
 
 It is built with Vite and published to GitHub Pages at [https://sindelarpetr.github.io/cursor/](https://sindelarpetr.github.io/cursor/).
 
@@ -32,22 +32,53 @@ npm run preview
 
 Preview serves the production build at [http://localhost:4173/cursor/](http://localhost:4173/cursor/).
 
-## Edit the 6-week plan
+`npm run build` first runs `npm run check` (`scripts/check-plan.ts`), which validates `plan/` against the rules below and tests the progress and navigation logic. A broken plan file fails the build, including the GitHub Pages deploy.
 
-Four days a week: **Upper A, Lower A, Upper B, Lower B**. A session is never mixed upper/lower. Every session has three main lifts, exactly one core exercise, and a ~20 minute wrist-rehab block.
+## The plan
 
-Files:
+Two sessions a week. The owner does two other workouts elsewhere.
 
-- `plan/week-01.json` … `plan/week-06.json` — week theme plus the four sessions
-- `plan/wrist.json` — the shared wrist circuit (merged onto every session at build time)
+| Weeks | Block | Sessions |
+| --- | --- | --- |
+| 1–3 | Upper-body block | Upper A, Upper B |
+| 4–6 | Lower-body block | Lower A, Lower B |
 
-A week file looks like:
+Rules for every session:
+
+- Upper or lower only, never mixed.
+- Three wrist-friendly main lifts: neutral grips, straps on pulls, and landmine or dumbbell pressing instead of heavy barbell pressing.
+- Exactly one small core exercise.
+- About 20 minutes (roughly a third of a ~60 minute session) of wrist rehab, using the shared circuit in `plan/wrist.json`.
+
+| Session | Main lifts | Core |
+| --- | --- | --- |
+| Upper A | Neutral-grip DB bench press, chest-supported row, landmine press | Dead bug |
+| Upper B | Neutral-grip DB incline press, one-arm DB row (strap), seated neutral-grip DB press | Bird dog |
+| Lower A | Back or goblet squat, Romanian deadlift (straps), Bulgarian split squat | Side plank |
+| Lower B | Goblet squat, single-leg Romanian deadlift (straps), reverse lunge | Suitcase hold |
+
+Progression inside each 3-week block:
+
+1. **Intro** (weeks 1 and 4): find working weights at RPE 6–7, leaving 2–3 reps in the tank.
+2. **Build** (weeks 2 and 5): keep the same weights and do more reps (top of the range, +2 reps on rows and single-leg work).
+3. **Top week** (weeks 3 and 6): add a little load and bring reps back to 6–8, plus an extra set on the third upper lift. Last sets at RPE 8, never a grind.
+
+There is no deload week inside a block. At 2 sessions a week, a block is only 6 sessions, and the switch from upper to lower already rests the muscles from the first block. After week 6, take an easy week before starting the plan again. The wrist dose keeps building gently across all six weeks, peaking in week 5, and drops back to standard reps in week 6.
+
+### Edit the plan
+
+- `plan/week-01.json` … `plan/week-06.json`: the week's block, theme, and goal, plus its two sessions.
+- `plan/wrist.json`: the shared wrist circuit. It is added to every session.
+
+A week file looks like this (shortened):
 
 ```json
 {
   "week": 1,
-  "title": "Foundation",
-  "goal": "Learn the four sessions. Leave 2–3 reps every set.",
+  "block": "upper",
+  "blockWeek": 1,
+  "title": "Intro",
+  "goal": "Learn Upper A and Upper B. Every set ends with 2–3 reps left.",
   "wrist": {
     "sets": 2,
     "load": "Very light. Pain-free only.",
@@ -68,7 +99,7 @@ A week file looks like:
       "title": "Upper A",
       "suggestedDay": "Monday",
       "durationMinutes": 60,
-      "notes": "Neutral grips only.",
+      "notes": "First upper day.",
       "blocks": [
         {
           "id": "main",
@@ -90,7 +121,17 @@ A week file looks like:
           "id": "core",
           "kind": "core",
           "title": "Core",
-          "exercises": []
+          "exercises": [
+            {
+              "id": "dead-bug",
+              "name": "Dead bug",
+              "sets": 3,
+              "reps": "10 / side",
+              "restSeconds": 45,
+              "load": "Bodyweight",
+              "notes": "Low back stays on the floor."
+            }
+          ]
         }
       ]
     }
@@ -98,9 +139,11 @@ A week file looks like:
 }
 ```
 
-`wrist.sets`, `wrist.load`, `wrist.notes`, and `wrist.reps` overlay `plan/wrist.json` so you can change the circuit once and still dose it by week. Week 6 is a deload (fewer sets, easier RPE).
+The week's `wrist` values (`sets`, `load`, `notes`, and `reps` per drill id) overlay `plan/wrist.json`, so you define the circuit once and set the dose per week.
 
-Gym-mode set checkmarks are stored in the browser (`localStorage`), not in git.
+### Progress in the browser
+
+Gym-mode ticks and the last opened session are stored in the browser (`localStorage`), not in git. On every load, saved progress is checked against the current plan: anything for a session id, exercise id, or set that no longer exists is dropped. Progress from the earlier 4-sessions-a-week plan was saved under an older key, which is deleted on first load.
 
 ## Add a logged workout
 
