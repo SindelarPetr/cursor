@@ -89,7 +89,7 @@ h1 {
 
 .summary {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
   margin: 28px 0 32px;
 }
@@ -306,10 +306,6 @@ h1 {
 }
 
 .plan-block-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
   margin-bottom: 20px;
 }
 
@@ -326,21 +322,6 @@ h1 {
 .plan-block-head p {
   margin: 6px 0 0;
   color: var(--muted);
-}
-
-.plan-block-count {
-  display: grid;
-  justify-items: end;
-  margin: 0;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-.plan-block-count strong {
-  font-family: Fraunces, Georgia, serif;
-  font-size: 1.7rem;
-  line-height: 1.1;
-  color: var(--ink);
 }
 
 .week-row {
@@ -370,14 +351,9 @@ h1 {
   font-weight: 450;
 }
 
-.week-row-head p,
-.week-count {
+.week-row-head p {
   margin: 0;
   color: var(--muted);
-}
-
-.week-count {
-  font-size: 0.9rem;
 }
 
 .session-grid {
@@ -401,10 +377,6 @@ h1 {
 
 .session-card.is-suggested {
   box-shadow: 0 0 0 2px var(--accent), var(--shadow);
-}
-
-.session-card.is-complete {
-  opacity: 0.78;
 }
 
 .session-card-meta,
@@ -453,10 +425,6 @@ h1 {
   width: min(640px, 100%);
   margin: 0 auto;
   padding: 0 16px calc(96px + env(safe-area-inset-bottom));
-}
-
-.gym.is-resting {
-  padding-bottom: calc(190px + env(safe-area-inset-bottom));
 }
 
 .gym-top,
@@ -509,12 +477,6 @@ h1 {
 .gym-session-note {
   margin: 8px 0 0;
   font-size: 1.05rem;
-}
-
-.gym-done {
-  margin: 12px 0 0;
-  color: var(--wrist);
-  font-weight: 600;
 }
 
 .gym-block {
@@ -585,32 +547,6 @@ h1 {
   font-size: 1rem;
 }
 
-.set-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 14px;
-}
-
-.set-btn {
-  min-width: 56px;
-  min-height: 56px;
-  padding: 0;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: #fff;
-  color: var(--ink);
-  font-size: 1.2rem;
-  font-weight: 700;
-  touch-action: manipulation;
-}
-
-.set-btn.is-done {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: #fff;
-}
-
 .gym-nav {
   position: fixed;
   left: 0;
@@ -631,44 +567,6 @@ h1 {
   align-items: center;
 }
 
-.rest-toast {
-  position: fixed;
-  left: 50%;
-  bottom: calc(76px + env(safe-area-inset-bottom));
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  width: min(440px, calc(100% - 24px));
-  padding: 12px 14px;
-  transform: translateX(-50%);
-  background: var(--ink);
-  color: #fff;
-  border-radius: 16px;
-}
-
-.rest-toast strong {
-  font-family: Fraunces, Georgia, serif;
-  font-size: 2rem;
-  line-height: 1;
-}
-
-.rest-toast .eyebrow {
-  color: #e6d2b8;
-}
-
-.rest-skip {
-  min-height: 48px;
-  padding: 0 16px;
-  border: 0;
-  border-radius: 12px;
-  background: #fff;
-  color: var(--ink);
-  font-weight: 700;
-  touch-action: manipulation;
-}
-
 @media (max-width: 900px) {
   .week-row {
     grid-template-columns: 1fr;
@@ -685,14 +583,6 @@ h1 {
     margin-left: -8px;
     margin-right: -8px;
     padding: 18px 14px 4px;
-  }
-
-  .plan-block-head {
-    flex-direction: column;
-  }
-
-  .plan-block-count {
-    justify-items: start;
   }
 
   .gym-rx {

@@ -1,15 +1,8 @@
 import assert from 'node:assert/strict'
 import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { findSession, parsePlan, sessionNeighbors } from '../src/data/parsePlan.ts'
-import {
-  completedSetCount,
-  emptyProgress,
-  isSessionComplete,
-  sanitizeProgress,
-  suggestSessionId,
-  type PlanProgress,
-} from '../src/lib/planProgress.ts'
+import { parsePlan, sessionNeighbors } from '../src/data/parsePlan.ts'
+import { isKnownSessionId, suggestSessionId } from '../src/lib/lastSession.ts'
 
 const planDir = join(import.meta.dirname, '..', 'plan')
 const readJson = (file: string): unknown => JSON.parse(readFileSync(join(planDir, file), 'utf8'))
@@ -108,56 +101,14 @@ check('sets, reps, rest, and a coaching note on every exercise', () => {
   }
 })
 
-check('stale progress (old 24-session ids, removed lifts, extra sets) is pruned', () => {
-  const stale = {
-    currentSessionId: 'w2-lower-b',
-    checks: {
-      'w1-upper-a': { 'ng-db-bench': [true, true, true, true, true, true], 'old-lift': [true] },
-      'w2-lower-a': { squat: [true, true] },
-      'w5-upper-b': { 'ng-db-incline': [true] },
-      'w4-lower-a': { squat: 'yes', rdl: [false, false] },
-      junk: 42,
-    },
-  }
-  const progress = sanitizeProgress(stale, plan.sessions)
-  assert.equal(progress.currentSessionId, null)
-  assert.deepEqual(progress.checks, { 'w1-upper-a': { 'ng-db-bench': [true, true, true, true] } })
-  assert.deepEqual(sanitizeProgress('not json', plan.sessions), emptyProgress())
-  assert.deepEqual(sanitizeProgress(null, plan.sessions), emptyProgress())
-})
-
-const completeSession = (progress: PlanProgress, sessionId: string): PlanProgress => {
-  const session = findSession(plan, sessionId)
-  assert.ok(session, sessionId)
-  const checks = Object.fromEntries(
-    session.blocks.flatMap((block) =>
-      block.exercises.map((exercise) => [exercise.id, Array(exercise.sets).fill(true)]),
-    ),
-  )
-  return { ...progress, currentSessionId: sessionId, checks: { ...progress.checks, [sessionId]: checks } }
-}
-
-check('suggested session follows plan order and crosses into the lower block', () => {
-  let progress = emptyProgress()
-  assert.equal(suggestSessionId(plan.sessions, progress), 'w1-upper-a')
-
-  progress = { ...progress, currentSessionId: 'w2-upper-b' }
-  assert.equal(suggestSessionId(plan.sessions, progress), 'w2-upper-b', 'last opened, unfinished')
-
-  for (const id of ids.slice(0, 6)) {
-    progress = completeSession(progress, id)
-  }
-  assert.ok(isSessionComplete(findSession(plan, 'w3-upper-b')!, progress))
-  assert.equal(suggestSessionId(plan.sessions, progress), 'w4-lower-a', 'after the upper block')
-
-  progress = completeSession(progress, 'w5-lower-a')
-  assert.equal(suggestSessionId(plan.sessions, progress), 'w5-lower-b', 'next open after last done')
-
-  for (const id of ids) {
-    progress = completeSession(progress, id)
-  }
-  assert.equal(suggestSessionId(plan.sessions, progress), 'w6-lower-b', 'all done')
-  assert.equal(completedSetCount(findSession(plan, 'w1-upper-a')!, progress).done > 0, true)
+check('Continue suggests the last opened session, else the first session', () => {
+  assert.equal(suggestSessionId(plan.sessions, null), 'w1-upper-a')
+  assert.equal(suggestSessionId(plan.sessions, 'w2-upper-b'), 'w2-upper-b')
+  assert.equal(suggestSessionId(plan.sessions, 'w4-lower-a'), 'w4-lower-a')
+  assert.equal(suggestSessionId(plan.sessions, 'w2-lower-b'), 'w1-upper-a', 'id from the old 24-session plan')
+  assert.equal(isKnownSessionId('w6-lower-b', plan.sessions), true)
+  assert.equal(isKnownSessionId('w5-upper-a', plan.sessions), false)
+  assert.equal(isKnownSessionId(42, plan.sessions), false)
 })
 
 check('previous / next walk all 12 sessions in order', () => {
@@ -170,10 +121,10 @@ check('previous / next walk all 12 sessions in order', () => {
   assert.equal(sessionNeighbors(plan, 'w4-lower-a').previous?.id, 'w3-upper-b')
 
   const last = sessionNeighbors(plan, 'w6-lower-b')
-  assert.equal(last.index, 11)
+  assert.equal(last.previous?.id, 'w6-lower-a')
   assert.equal(last.next, undefined)
 
-  assert.deepEqual(sessionNeighbors(plan, 'w5-upper-a'), { index: -1 })
+  assert.deepEqual(sessionNeighbors(plan, 'w5-upper-a'), {})
 })
 
 check('invalid plan files fail loudly', () => {

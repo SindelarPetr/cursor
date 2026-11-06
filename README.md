@@ -32,7 +32,7 @@ npm run preview
 
 Preview serves the production build at [http://localhost:4173/cursor/](http://localhost:4173/cursor/).
 
-`npm run build` first runs `npm run check` (`scripts/check-plan.ts`), which validates `plan/` against the rules below and tests the progress and navigation logic. A broken plan file fails the build, including the GitHub Pages deploy.
+`npm run build` first runs `npm run check` (`scripts/check-plan.ts`), which validates `plan/` against the rules below and tests the Continue and previous/next logic. A broken plan file fails the build, including the GitHub Pages deploy.
 
 ## The plan
 
@@ -141,9 +141,9 @@ A week file looks like this (shortened):
 
 The week's `wrist` values (`sets`, `load`, `notes`, and `reps` per drill id) overlay `plan/wrist.json`, so you define the circuit once and set the dose per week.
 
-### Progress in the browser
+### What the browser remembers
 
-Gym-mode ticks and the last opened session are stored in the browser (`localStorage`), not in git. On every load, saved progress is checked against the current plan: anything for a session id, exercise id, or set that no longer exists is dropped. Progress from the earlier 4-sessions-a-week plan was saved under an older key, which is deleted on first load.
+Only the last opened session, so the overview's Continue card and `#/session/current` can take you back to it. It is stored in `localStorage` under `cursor-plan-last-session`, and ignored if that session no longer exists in `plan/`. The app has no set ticking or progress counters. Older set-tracking data in the browser (`cursor-plan-progress-v1` / `-v2`) is deleted on load.
 
 ## Add a logged workout
 
