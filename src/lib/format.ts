@@ -49,10 +49,3 @@ export const formatRest = (seconds: number): string => {
 
   return `${minutes}:${remaining.toString().padStart(2, '0')}`
 }
-
-export const formatClock = (seconds: number): string => {
-  const safe = Math.max(0, seconds)
-  const minutes = Math.floor(safe / 60)
-  const remaining = safe % 60
-  return `${minutes}:${remaining.toString().padStart(2, '0')}`
-}

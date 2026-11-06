@@ -272,14 +272,13 @@ export const findSession = (
 export const sessionNeighbors = (
   plan: TrainingPlan,
   sessionId: string,
-): { previous?: PlanSession; next?: PlanSession; index: number } => {
+): { previous?: PlanSession; next?: PlanSession } => {
   const index = plan.sessions.findIndex((session) => session.id === sessionId)
   if (index < 0) {
-    return { index }
+    return {}
   }
 
   return {
-    index,
     previous: plan.sessions[index - 1],
     next: plan.sessions[index + 1],
   }
